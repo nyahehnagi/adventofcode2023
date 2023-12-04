@@ -108,9 +108,16 @@ test('renders a calibration value of 59 for an input of testCalibrationString', 
 });
 
 
-test('renders a calibration value of 44 for an input of testCalibrationString', () => {
+test('renders a calibration value of 13 for an input of testCalibrationString', () => {
   const testCalibrationString = ["123fdx"]
   const { getByText } = render(<Calibration calibration={testCalibrationString}/>);
   const componentElement = getByText('Calibration Values are 13');
+  expect(componentElement).toBeInTheDocument();
+});
+
+test('renders a calibration value of 82 for an input of testCalibrationString', () => {
+  const testCalibrationString = ["eightwo"]
+  const { getByText } = render(<Calibration calibration={testCalibrationString}/>);
+  const componentElement = getByText('Calibration Values are 82');
   expect(componentElement).toBeInTheDocument();
 });
