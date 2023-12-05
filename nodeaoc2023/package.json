@@ -1,0 +1,19 @@
+{
+  "name": "nodeaoc2023",
+  "version": "1.0.0",
+  "description": "advent of code 2023",
+  "main": "index.ts",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js",
+    "tsc": "tsc index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}

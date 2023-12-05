@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES6",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "allowImportingTsExtensions": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "jsx": "react",
+  },
+  "lib": ["es2015"]
+}
