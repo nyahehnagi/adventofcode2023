@@ -95,7 +95,7 @@ var processFile = function () { return __awaiter(void 0, void 0, void 0, functio
     });
 }); };
 var day2 = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var data, error_2, badGames, allGames, powerOfCubes, cubeColourCount, lines, lines_1, lines_1_1, line, colonIndex, gameNumber, maxRed, maxGreen, maxBlue, handfuls, handfulArray, handfulArray_1, handfulArray_1_1, handful, cubes, cubes_1, cubes_1_1, cube, trimmedCube, cubeCount, cubeColour, removedDupesBadGames, goodGames, removedDupesGoodGames, sum, sumOfPowerOfCubes;
+    var data, error_2, badGames, allGames, powerOfCubes, cubeColourCount, lines, lines_1, lines_1_1, line, colonIndex, gameNumber, maxCounts, handfuls, handfulArray, handfulArray_1, handfulArray_1_1, handful, cubes, cubes_1, cubes_1_1, cube, trimmedCube, cubeCount, cubeColour, removedDupesBadGames, goodGames, removedDupesGoodGames, sum, sumOfPowerOfCubes;
     var e_1, _a, e_2, _b, e_3, _c;
     return __generator(this, function (_d) {
         switch (_d.label) {
@@ -129,9 +129,11 @@ var day2 = function () { return __awaiter(void 0, void 0, void 0, function () {
                         colonIndex = line.indexOf(":");
                         if (colonIndex !== -1) {
                             gameNumber = parseInt(line.substring(0, colonIndex).trim().replace("Game ", ""));
-                            maxRed = 0;
-                            maxGreen = 0;
-                            maxBlue = 0;
+                            maxCounts = {
+                                "red": 0,
+                                "green": 0,
+                                "blue": 0
+                            };
                             handfuls = line.substring(colonIndex + 1).trim();
                             handfulArray = handfuls.split(";");
                             try {
@@ -146,23 +148,26 @@ var day2 = function () { return __awaiter(void 0, void 0, void 0, function () {
                                             trimmedCube = cube.trim();
                                             cubeCount = parseInt(trimmedCube.match(/\d+/)[0], 10);
                                             cubeColour = trimmedCube.match(/[a-zA-Z]+/)[0];
-                                            switch (cubeColour) {
-                                                case "red":
-                                                    if (cubeCount > maxRed) {
-                                                        maxRed = cubeCount;
-                                                    }
-                                                    break;
-                                                case "green":
-                                                    if (cubeCount > maxGreen) {
-                                                        maxGreen = cubeCount;
-                                                    }
-                                                    break;
-                                                case "blue":
-                                                    if (cubeCount > maxBlue) {
-                                                        maxBlue = cubeCount;
-                                                    }
-                                                    break;
+                                            if (cubeCount > maxCounts[cubeColour]) {
+                                                maxCounts[cubeColour] = cubeCount;
                                             }
+                                            // switch (cubeColour) {
+                                            //   case "red":
+                                            //     if (cubeCount > maxRed) {
+                                            //       maxRed = cubeCount;
+                                            //     }
+                                            //     break;
+                                            //   case "green":
+                                            //     if (cubeCount > maxGreen) {
+                                            //       maxGreen = cubeCount;
+                                            //     }
+                                            //     break;
+                                            //   case "blue":
+                                            //     if (cubeCount > maxBlue) {
+                                            //       maxBlue = cubeCount;
+                                            //     }
+                                            //     break;
+                                            // }
                                             if (cubeColourCount[cubeColour] < cubeCount) {
                                                 badGames.push(gameNumber);
                                                 // break;
@@ -186,7 +191,7 @@ var day2 = function () { return __awaiter(void 0, void 0, void 0, function () {
                                 }
                                 finally { if (e_2) throw e_2.error; }
                             }
-                            powerOfCubes.push(maxRed * maxGreen * maxBlue);
+                            powerOfCubes.push(maxCounts["red"] * maxCounts["green"] * maxCounts["blue"]);
                         }
                     }
                 }

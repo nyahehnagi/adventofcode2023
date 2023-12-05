@@ -45,9 +45,12 @@ const day2 = async () => {
       const gameNumber: number = parseInt(
         line.substring(0, colonIndex).trim().replace("Game ", "")
       );
-      let maxRed = 0;
-      let maxGreen = 0;
-      let maxBlue = 0;
+
+      const maxCounts = {
+        "red": 0,
+        "green": 0,
+        "blue": 0
+      };
 
       // Extract the part to the right of the colon (excluding the first space)
       const handfuls: string = line.substring(colonIndex + 1).trim();
@@ -66,22 +69,8 @@ const day2 = async () => {
           // get the color of the cube
           const cubeColour = trimmedCube.match(/[a-zA-Z]+/)[0];
 
-          switch (cubeColour) {
-            case "red":
-              if (cubeCount > maxRed) {
-                maxRed = cubeCount;
-              }
-              break;
-            case "green":
-              if (cubeCount > maxGreen) {
-                maxGreen = cubeCount;
-              }
-              break;
-            case "blue":
-              if (cubeCount > maxBlue) {
-                maxBlue = cubeCount;
-              }
-              break;
+          if (cubeCount > maxCounts[cubeColour]) {
+            maxCounts[cubeColour] = cubeCount;
           }
 
           if (cubeColourCount[cubeColour] < cubeCount) {
@@ -91,7 +80,7 @@ const day2 = async () => {
         }
         allGames.push(gameNumber);
       }
-      powerOfCubes.push(maxRed * maxGreen * maxBlue);
+      powerOfCubes.push(maxCounts["red"] * maxCounts["green"] * maxCounts["blue"]);
     }
   }
 
@@ -107,7 +96,7 @@ const day2 = async () => {
   const sumOfPowerOfCubes = powerOfCubes.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     0
-  );  
+  );
   console.log("sum:", sum);
   console.log("sumOfPowerOfCubes:", sumOfPowerOfCubes);
 };
