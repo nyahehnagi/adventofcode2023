@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/nodeaoc2023/node_modules
 /.pnp
 .pnp.js
 
